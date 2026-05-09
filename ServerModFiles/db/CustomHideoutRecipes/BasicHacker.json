@@ -1,0 +1,40 @@
+[
+  {
+    "_id": "69fee966cd76d2ac5bf58950",
+    "areaType": 10,
+    "requirements": [
+      {
+        "areaType": 10,
+        "requiredLevel": 2,
+        "type": "Area"
+      },
+      {
+        "templateId": "56742c324bdc2d150f8b456d",
+        "count": 1,
+        "isFunctional": false,
+        "isEncoded": false,
+        "type": "Item"
+      },
+      {
+        "templateId": "590a3b0486f7743954552bdb",
+        "count": 1,
+        "isFunctional": false,
+        "isEncoded": false,
+        "type": "Item"
+      },
+      {
+        "templateId": "5c052fb986f7746b2101e909",
+        "type": "Tool"
+      }
+    ],
+    "productionTime": 350,
+    "needFuelForAllProductionTime": false,
+    "locked": false,
+    "endProduct": "69f95efeb93f3b8fa8d3879f",
+    "continuous": false,
+    "count": 1,
+    "productionLimitCount": 0,
+    "isEncoded": false,
+    "isCodeProduction": false
+  }
+]
