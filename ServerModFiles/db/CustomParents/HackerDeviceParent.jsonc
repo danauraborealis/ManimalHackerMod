@@ -1,0 +1,18 @@
+{
+  // Custom item parent for the Hacker Device. Derives from KeyMechanical
+  // (5c99f98d86f7745c314214b3) so items using this parent inherit the
+  // engine's KeyComponent — that's what gives us native NumberOfUsages
+  // tracking + auto-discard at MaximumNumberOfUsage.
+  //
+  // The _name field MUST match the client-side class name registered
+  // via [CustomParent], i.e. "HackerDeviceItem".
+  "48048b8a031d1c9aac192451": {
+    "_id": "48048b8a031d1c9aac192451",
+    "_name": "HackerDeviceItem",
+    "_parent": "5c99f98d86f7745c314214b3",
+    "_type": "Node",
+    "_props": {},
+    "addToContainerFilters": false,
+    "containers": []
+  }
+}

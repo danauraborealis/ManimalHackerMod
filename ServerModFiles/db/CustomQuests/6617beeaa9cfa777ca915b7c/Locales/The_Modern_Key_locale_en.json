@@ -1,0 +1,11 @@
+{
+  "69fe605d811187d931121c8d name": "The Modern Key",
+  "69fe605d811187d931121c8d description": "Got something for you, brother. Quiet kind of job — your specialty by now, I think.\n\nEver hear me mention Voron? No, you wouldn't have. Fighter of mine, retired before your time on the circuit. Vicious in the cage, quiet outside it. Crowd loved him. He was also clever — too clever, maybe. Spent his off hours making these little gadgets. Called them \"the modern key.\" Said with the right code, every locked door and every cash machine in this city was just a suggestion.\n\nOne night he didn't come back from a fight at the Resort. The vultures picked his room — money, watches, ammo, the obvious shit. But the case where he kept his work? Schematics, prototypes? They didn't know what they were looking at, ha!\n\nGet me that case. Room's somewhere near the Health Resort on Shoreline — you'll need his key for the door. Once it's on my desk, we'll talk about adding something to my catalogue. Something I keep off the public list. Just for you, brother.",
+  "69fe605d811187d931121c8d startedMessageText": "Get me that case. Room's somewhere near the Health Resort on Shoreline — you'll need his key for the door.",
+  "69fe605d811187d931121c8d successMessageText": "HA! There she is. Right where I said, right where the vultures couldn't see her. Beautiful work, brother.\n\nVoron — may his memory be honored. I held his slot in the bracket open for a year, just in case. Some people you don't replace; you file them under \"irreplaceable\" and keep doing the work. That's the trick of it.\n\nBut here we are. First piece is on the house — consider it a thank-you. After this, we're talking numbers, ha!",
+  "69fe605d811187d931121c8d failMessageText": "Lost the case? Hmph. Voron deserved better than that, brother. So did I.",
+  "69fe605d811187d931121c8d acceptPlayerMessage": "Get me that case. Room's somewhere near the Health Resort on Shoreline — you'll need his key for the door.",
+  "69fe605d811187d931121c8d completePlayerMessage": "First piece is on the house — consider it a thank-you. After this, we're talking numbers, ha!",
+  "69fec033b93f3b8fa8d387a6": "Find Voron's Case",
+  "69fe648c48942a1ec0121c95": "Hand over Voron's Case"
+}

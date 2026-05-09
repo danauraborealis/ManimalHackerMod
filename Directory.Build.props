@@ -1,0 +1,18 @@
+<Project>
+  <!--
+    single source of truth for mod version. bumps here flow into:
+    - both csprojs <Version>
+    - HackerClient assembly version + the BepInPlugin attribute (via ModVersion.g.cs)
+    - server ModMetadata.Version (read from assembly at runtime)
+    - the release zip filename (Manimal-HackerMod-X.Y.Z.zip)
+  -->
+  <PropertyGroup>
+    <ModVersion>1.0.0</ModVersion>
+    <ModUsername>Manimal</ModUsername>
+    <ModDisplayName>HackerMod</ModDisplayName>
+    <ModGuid>com.manimal.hackermod</ModGuid>
+    <Version>$(ModVersion)</Version>
+    <AssemblyVersion>$(ModVersion)</AssemblyVersion>
+    <FileVersion>$(ModVersion)</FileVersion>
+  </PropertyGroup>
+</Project>

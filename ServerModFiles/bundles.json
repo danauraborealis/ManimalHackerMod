@@ -1,0 +1,38 @@
+{
+  "manifest": [
+    {
+      "key": "manimal/hacker_container.bundle",
+      "dependencyKeys": [
+        "shaders",
+        "cubemaps",
+        "assets/content/weapons/additional_hands/client_assets.bundle",
+        "assets/content/weapons/weapon_root_anim_fix.bundle",
+        "assets/systems/effects/muzzleflash/muzzleflash.bundle"
+      ]
+    },
+	{
+      "key": "manimal/arenahacker_container.bundle",
+      "dependencyKeys": [
+        "shaders",
+        "cubemaps",
+        "assets/content/weapons/additional_hands/client_assets.bundle",
+        "assets/content/weapons/weapon_root_anim_fix.bundle",
+        "assets/systems/effects/muzzleflash/muzzleflash.bundle"
+      ]
+    },
+	{
+      "key": "manimal/hacker_loot.bundle",
+      "dependencyKeys": [
+        "shaders",
+        "cubemaps"
+      ]
+    },
+	{
+      "key": "manimal/ref_hacker_loot.bundle",
+      "dependencyKeys": [
+        "shaders",
+        "cubemaps"
+      ]
+    }
+  ]
+}

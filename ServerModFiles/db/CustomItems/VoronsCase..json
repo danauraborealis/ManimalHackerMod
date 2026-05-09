@@ -1,0 +1,72 @@
+{
+    "69fe65efb93f3b8fa8d387a3": {
+      "itemTplToClone": "5910922b86f7747d96753483",
+      "parentId": "5671435f4bdc2d96058b4569",
+      "handbookParentId": "5b619f1a86f77450a702a6f3",
+      "overrideProperties": {
+          "COMMENT_TEXT": "This can override properties from the _props variable from the items itemTplToClone",
+          "ExaminedByDefault": true,
+		  "QuestItem": true,
+		  "CanSellOnRagfair": false,
+          "Prefab": {
+              "path": "assets/content/items/quest/item_quest_container_carbon_case/item_quest_container_carbon_case.bundle",
+              "rcid": ""
+          },
+          "Foldable": false,
+          "Weight": 6,
+          "Height": 4,
+          "Width": 4,
+          "StackMaxSize": 1,
+          "RarityPvE": "Superrare",
+          "BackgroundColor": "orange"
+      },
+      "locales": {
+            "en": {
+                "name": "Case with Voron's work",
+                "shortName": "VoronCase",
+                "description": "A hard case containing the specifications for whatever Voron was working on."
+            }
+        },
+      "addtoItemBlacklist": true,
+      "addtoInventorySlots": [],
+      "addtoModSlots": false,
+      "modSlot": [],
+      "fleaPriceRoubles": 100000,
+      "handbookPriceRoubles": 100000,
+      "addtoBots": false,
+      "addtoStaticLootContainers": false,
+     "staticLootContainers": [
+            {
+        "containerName": "LOOTCONTAINER_PC_BLOCK",
+        "probability": 10000
+      },
+      {
+        "containerName": "LOOTCONTAINER_TOOLBOX",
+        "probability": 9000
+      },
+	  {
+        "containerName": "LOOTCONTAINER_TOOLBOX_4X3_2",
+        "probability": 9000
+      },
+      {
+        "containerName": "LOOTCONTAINER_DEAD_SCAV",
+        "probability": 10000
+      },
+	  {
+        "containerName": "LOOTCONTAINER_DUFFLE_BAG",
+        "probability": 10000
+      },
+	  {
+        "containerName": "LOOTCONTAINER_DUFFLE_BAG_ADV",
+        "probability": 10000
+      }
+    ],
+      "addLooseLoot": false,
+      "addLooseLootProbability": 250,
+      "addtoHallOfFame": false,
+      "hallOfFameSlots": [
+        "smallTrophies"
+      ],
+      "addtoStatuetteSlots": false
+    }
+}

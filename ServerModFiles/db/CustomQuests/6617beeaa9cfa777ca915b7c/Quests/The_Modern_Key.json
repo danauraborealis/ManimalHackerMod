@@ -1,0 +1,156 @@
+{
+  "69fe605d811187d931121c8d": {
+    "QuestName": "The Modern Key",
+    "_id": "69fe605d811187d931121c8d",
+    "traderId": "6617beeaa9cfa777ca915b7c",
+    "type": "PickUp",
+    "location": "5704e554d2720bac5b8b456e",
+    "image": "/files/quest/icon/66562aaaa636bd24a654f416.png",
+    "acceptanceAndFinishingSource": "eft",
+    "arenaLocations": [],
+    "instantComplete": false,
+    "isKey": false,
+    "secretQuest": false,
+    "gameModes": [],
+    "progressSource": "eft",
+    "rankingModes": [],
+    "side": "Pmc",
+    "sideExclusive": "Pmc",
+    "description": "69fe605d811187d931121c8d description",
+    "startedMessageText": "69fe605d811187d931121c8d startedMessageText",
+    "successMessageText": "69fe605d811187d931121c8d successMessageText",
+    "failMessageText": "69fe605d811187d931121c8d failMessageText",
+    "acceptPlayerMessage": "69fe605d811187d931121c8d acceptPlayerMessage",
+    "declinePlayerMessage": "69fe605d811187d931121c8d declinePlayerMessage",
+    "completePlayerMessage": "69fe605d811187d931121c8d completePlayerMessage",
+    "changeQuestMessageText": "69fe605d811187d931121c8d changeQuestMessageText",
+    "name": "69fe605d811187d931121c8d name",
+    "note": "69fe605d811187d931121c8d note",
+    "restartable": false,
+    "canShowNotificationsInGame": true,
+    "status": 0,
+    "conditions": {
+      "AvailableForFinish": [
+	    {
+          "conditionType": "FindItem",
+          "countInRaid": false,
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "69fec033b93f3b8fa8d387a6",
+          "index": 0,
+          "isEncoded": false,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "69fe65efb93f3b8fa8d387a3"
+          ],
+          "value": 1,
+          "visibilityConditions": []
+        },
+        {
+          "conditionType": "HandoverItem",
+          "dogtagLevel": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "69fe648c48942a1ec0121c95",
+          "index": 0,
+          "isEncoded": false,
+          "maxDurability": 100,
+          "minDurability": 0,
+          "onlyFoundInRaid": false,
+          "parentId": "",
+          "target": [
+            "69fe65efb93f3b8fa8d387a3"
+          ],
+          "value": 1,
+          "visibilityConditions": []
+        }
+      ],
+      "AvailableForStart": [
+        {
+          "compareMethod": ">=",
+          "conditionType": "Level",
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "69fe6e657317e54be1b1c4f5",
+          "index": 5,
+          "parentId": "",
+          "value": 20,
+          "visibilityConditions": []
+        }
+      ],
+      "Fail": []
+    },
+    "rewards": {
+      "Fail": [],
+      "Started": [],
+      "Success": [
+        {
+          "availableInGameEditions": [],
+          "id": "69fe605d49e9fea0cc121c8e",
+          "index": 0,
+          "type": "Experience",
+          "value": "10000",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "id": "69fe653b8d852e2c56121c9d",
+          "index": 1,
+          "items": [
+            {
+              "_id": "69fe5fd6b93f3b8fa8d387a2",
+              "_tpl": "69fd2542b93f3b8fa8d387a0"
+            }
+          ],
+          "loyaltyLevel": 1,
+          "target": "69fe5fd6b93f3b8fa8d387a2",
+          "traderId": "6617beeaa9cfa777ca915b7c",
+          "type": "AssortmentUnlock",
+          "unknown": false
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69fe654045cc1c24d8121ca1",
+          "index": 2,
+          "items": [
+            {
+              "_id": "69fe6540ea727b8a61121ca2",
+              "_tpl": "69fd2542b93f3b8fa8d387a0",
+              "upd": {
+                "StackObjectsCount": 1
+              }
+            }
+          ],
+          "target": "69fe6540ea727b8a61121ca2",
+          "type": "Item",
+          "value": "1",
+          "unknown": true
+        },
+        {
+          "availableInGameEditions": [],
+          "findInRaid": true,
+          "id": "69fe6581f2d79a40c3121ca3",
+          "index": 3,
+          "items": [
+            {
+              "_id": "69fe658118244a7805121ca4",
+              "_tpl": "5d235b4d86f7742e017bc88a",
+              "upd": {
+                "StackObjectsCount": 25
+              }
+            }
+          ],
+          "target": "69fe658118244a7805121ca4",
+          "type": "Item",
+          "value": "25",
+          "unknown": false
+        }
+      ]
+    }
+  }
+}

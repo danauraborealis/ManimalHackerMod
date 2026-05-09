@@ -1,0 +1,145 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>Manimal.HackerMod</RootNamespace>
+    <Nullable>disable</Nullable>
+    <Authors>$(ModUsername)</Authors>
+    <Configurations>Debug;Release</Configurations>
+    <LangVersion>latest</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!--
+    generates ModVersion.g.cs with a const string that Plugin.cs uses for
+    [BepInPlugin]. attribute args must be const so we cant read this at
+    runtime. driven off $(ModVersion) so a single bump in Directory.Build.props
+    flows into the BepInPlugin attribute.
+  -->
+  <Target Name="GenerateModVersion" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <ModVersionLines Include="// auto-generated. edit ModVersion in Directory.Build.props." />
+      <ModVersionLines Include="namespace Manimal.HackerMod" />
+      <ModVersionLines Include="{" />
+      <ModVersionLines Include="    internal static class ModVersion" />
+      <ModVersionLines Include="    {" />
+      <ModVersionLines Include="        public const string Value = &quot;$(ModVersion)&quot;%3B" />
+      <ModVersionLines Include="    }" />
+      <ModVersionLines Include="}" />
+    </ItemGroup>
+    <MakeDir Directories="$(IntermediateOutputPath)" />
+    <WriteLinesToFile File="$(IntermediateOutputPath)ModVersion.g.cs" Lines="@(ModVersionLines)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)ModVersion.g.cs" />
+      <FileWrites Include="$(IntermediateOutputPath)ModVersion.g.cs" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="WTT-ClientCommonLib" Version="2.0.20" />
+  </ItemGroup>
+
+  <!--
+    Hint paths point at the same SPTDev install MitsuruMod uses. If you ever
+    move SPTDev, retarget these in one place. SpecificVersion=False on the
+    pinned-version refs lets the build tolerate minor BSG bumps without
+    requiring a csproj edit.
+  -->
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>D:\SPTDev\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>D:\SPTDev\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="spt-common">
+      <HintPath>D:\SPTDev\BepInEx\plugins\spt\spt-common.dll</HintPath>
+    </Reference>
+    <Reference Include="spt-reflection">
+      <HintPath>D:\SPTDev\BepInEx\plugins\spt\spt-reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Comfort">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath>
+    </Reference>
+    <Reference Include="Comfort.Unity">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\Comfort.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="ItemComponent.Types">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\ItemComponent.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="ItemTemplate.Types">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\ItemTemplate.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <!--
+      Sirenix.Serialization is needed at compile time for AddComponent<T>:
+      EFT's MonoBehaviours derive from Sirenix's SerializedMonoBehaviour,
+      so the generic constraint on AddComponent<HackerMinigameRunner>()
+      pulls Sirenix into the type-resolution path even though we don't
+      use any Sirenix types directly.
+    -->
+    <Reference Include="Sirenix.Serialization">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="DissonanceVoip">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\DissonanceVoip.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\SPTDev\EscapeFromTarkov_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <!-- dev-time deploy: copy DLL into the local SPTDev BepInEx plugins folder -->
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <MakeDir Directories="D:\SPTDev\BepInEx\plugins\HackerMod" />
+    <Exec Command="copy &quot;$(TargetPath)&quot; &quot;D:\SPTDev\BepInEx\plugins\HackerMod\$(TargetFileName)&quot;" />
+  </Target>
+
+</Project>

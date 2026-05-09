@@ -1,0 +1,31 @@
+//adds the super hacker to ref level 3
+{
+ "REF": {
+    "items": [
+    {
+      "_id": "69fe5fd6b93f3b8fa8d387a2",
+      "_tpl": "69fd2542b93f3b8fa8d387a0",
+      "parentId": "hideout",
+      "slotId": "hideout",
+      "upd": {
+        "UnlimitedCount": false,
+        "StackObjectsCount": 1,
+        "BuyRestrictionMax": 2
+      }
+    }
+  ],
+"barter_scheme": {
+    "69fe5fd6b93f3b8fa8d387a2": [
+      [
+        {
+          "count": 80,
+          "_tpl": "5d235b4d86f7742e017bc88a"
+        }
+      ]
+    ]
+  },
+  "loyal_level_items": {
+    "69fe5fd6b93f3b8fa8d387a2": 3
+  }
+}
+}

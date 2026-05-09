@@ -1,0 +1,123 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RootNamespace>HackerMod</RootNamespace>
+    <Authors>$(ModUsername)</Authors>
+    <Company>$(ModUsername)</Company>
+    <Product>$(ModDisplayName)</Product>
+    <Description>Custom hacker device with an in-raid hacking minigame.</Description>
+    <Copyright>Copyright © $(ModUsername)</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.4.2" />
+    <PackageReference Include="SPTarkov.Common" Version="4.0.13" />
+    <PackageReference Include="SPTarkov.DI" Version="4.0.13" />
+    <PackageReference Include="SPTarkov.Server.Core" Version="4.0.13" />
+    <PackageReference Include="WTT-ServerCommonLib" Version="2.0.20" />
+  </ItemGroup>
+
+  <!--
+    forces the client to build before the server. ReferenceOutputAssembly=false
+    means we dont actually link against it (different target frameworks) — we
+    just need the build order so PackageModForDistribution below can find
+    HackerClient.dll on disk.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\HackerModClient\HackerClient.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
+  </ItemGroup>
+
+  <!--
+    PostBuild: deploy DLL + ServerModFiles into the dev SPT mod folder so the
+    server picks them up on next launch. Adjust DevModDir if your SPT install
+    lives elsewhere.
+
+    Data files copy BEFORE the DLL so a running server (which holds a lock
+    on the DLL) doesn't block the JSON sync — rebuild after stopping the
+    server to refresh the DLL.
+
+    Deletions are NOT mirrored. If you delete a JSON from ServerModFiles,
+    delete its deployed counterpart by hand.
+  -->
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <PropertyGroup>
+      <DevModDir>D:\SPTDev\SPT\user\mods\HackerServer</DevModDir>
+      <ServerModFilesDir>$(ProjectDir)..\ServerModFiles</ServerModFilesDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <ServerDbFiles Include="$(ServerModFilesDir)\db\**\*.*" />
+    </ItemGroup>
+    <MakeDir Directories="$(DevModDir)" />
+    <Copy
+      SourceFiles="@(ServerDbFiles)"
+      DestinationFiles="@(ServerDbFiles->'$(DevModDir)\db\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevModDir)" />
+  </Target>
+
+  <!--
+    PackageModForDistribution: assembles a single release zip containing both
+    the client (BepInEx plugin) and server (SPT mod) sides in their
+    install-ready folder layout. zip is named with the version so successive
+    releases dont overwrite each other:
+
+      Manimal-HackerMod-{version}.zip
+      ├── BepInEx/plugins/HackerMod/HackerClient.dll
+      └── SPT/user/mods/HackerServer/
+          ├── HackerServer.dll
+          ├── db/...
+          ├── bundles/...
+          └── bundles.json
+
+    runs after server build. ProjectReference above forces the client to build
+    first so its DLL is on disk by the time we pick it up.
+  -->
+  <Target Name="PackageModForDistribution" AfterTargets="Build">
+    <PropertyGroup>
+      <ZipFileName>$(ModUsername)-$(ModDisplayName)-$(ModVersion).zip</ZipFileName>
+      <RepoRoot>$(ProjectDir)..\</RepoRoot>
+      <TempPackageDir>$(ProjectDir)obj\Package</TempPackageDir>
+      <ServerOutDir>$(TempPackageDir)\SPT\user\mods\HackerServer</ServerOutDir>
+      <ClientOutDir>$(TempPackageDir)\BepInEx\plugins\HackerMod</ClientOutDir>
+      <ServerModFilesDir>$(RepoRoot)ServerModFiles</ServerModFilesDir>
+      <ClientDll>$(RepoRoot)HackerModClient\bin\$(Configuration)\netstandard2.1\HackerClient.dll</ClientDll>
+    </PropertyGroup>
+    <ItemGroup>
+      <ServerDbFiles Include="$(ServerModFilesDir)\db\**\*.*" />
+      <ServerBundleFiles Include="$(ServerModFilesDir)\bundles\**\*.*" />
+      <ServerBundleManifest Include="$(ServerModFilesDir)\bundles.json" Condition="Exists('$(ServerModFilesDir)\bundles.json')" />
+    </ItemGroup>
+
+    <Message Text="--- Packaging $(ZipFileName) ---" Importance="high" />
+    <RemoveDir Directories="$(TempPackageDir)" />
+    <MakeDir Directories="$(ServerOutDir)" />
+    <MakeDir Directories="$(ClientOutDir)" />
+
+    <!-- server side -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ServerOutDir)" />
+    <Copy
+      SourceFiles="@(ServerDbFiles)"
+      DestinationFiles="@(ServerDbFiles->'$(ServerOutDir)\db\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy
+      SourceFiles="@(ServerBundleFiles)"
+      DestinationFiles="@(ServerBundleFiles->'$(ServerOutDir)\bundles\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy
+      SourceFiles="@(ServerBundleManifest)"
+      DestinationFolder="$(ServerOutDir)" />
+
+    <!-- client side -->
+    <Error Text="Client DLL not found at $(ClientDll). Build the solution (or the client project) before packaging." Condition="!Exists('$(ClientDll)')" />
+    <Copy SourceFiles="$(ClientDll)" DestinationFolder="$(ClientOutDir)" />
+
+    <ZipDirectory SourceDirectory="$(TempPackageDir)" DestinationFile="$(RepoRoot)$(ZipFileName)" Overwrite="true" />
+    <RemoveDir Directories="$(TempPackageDir)" />
+    <Message Text="--- $(ZipFileName) packaged at $(RepoRoot) ---" Importance="high" />
+  </Target>
+</Project>

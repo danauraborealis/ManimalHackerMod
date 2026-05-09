@@ -1,0 +1,53 @@
+{
+  "69f95efeb93f3b8fa8d3879f": {
+    "itemTplToClone": "5448ba0b4bdc2d02308b456c",
+    "parentId": "48048b8a031d1c9aac192451",
+    "handbookParentId": "5b5f6fa186f77409407a7eb7",
+    "overrideProperties": {
+      "ExaminedByDefault": true,
+      "CanSellOnRagfair": false,
+      "Weight": 0.3,
+      "Width": 1,
+      "Height": 1,
+      "StackMaxSize": 1,
+      "BackgroundColor": "green",
+      "RarityPvE": "Rare",
+      "MaximumNumberOfUsage": 2,
+      "DiscardLimit": 5,
+	  "ItemSound": "generic",
+      "Prefab": {
+        "path": "manimal/hacker_loot.bundle",
+        "rcid": ""
+      },
+      "UsePrefab": {
+        "path": "manimal/hacker_container.bundle",
+        "rcid": ""
+      }
+    },
+    "locales": {
+      "en": {
+        "name": "Hacker Device",
+        "shortName": "Hacker",
+        "description": "A handheld device loaded with off-the-books penetration tools."
+      }
+    },
+    "addtoItemBlacklist": false,
+    "addtoInventorySlots": [],
+    "addtoModSlots": false,
+    "modSlot": [],
+    "fleaPriceRoubles": 50000,
+    "handbookPriceRoubles": 50000,
+    "addtoBots": false,
+    "addtoStaticLootContainers": true,
+    "staticLootContainers": [
+      { "containerName": "LOOTCONTAINER_PC_BLOCK",  "probability": 4000 },
+      { "containerName": "LOOTCONTAINER_TOOLBOX",   "probability": 3000 },
+      { "containerName": "LOOTCONTAINER_DUFFLE_BAG","probability": 2000 }
+    ],
+    "addLooseLoot": false,
+    "addLooseLootProbability": 0,
+    "addtoHallOfFame": false,
+    "hallOfFameSlots": [],
+    "addtoStatuetteSlots": false
+  }
+}
